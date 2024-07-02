@@ -30,8 +30,8 @@ def menu_principal():
     opciones = {
         '1': ('Consultar Asistencia Actual  por  alumno', consulta_asistencia_rut),
         '2': ('Visualizar alumnos Asistencia Actual < 70%.', visualiza_asistencia_70),
-        '3': ('Visualizar número alumnos con “Asistencia Actual”  < 70%  de un curso', accion3),
-        '4': ('Generar archivo alumnos con “Asistencia Actual”  < 70%  de un curso', accion3),
+        '3': ('Visualizar número alumnos con “Asistencia Actual”  < 70%  de un curso', visualiza_asistencia_70),
+        '4': ('Generar archivo alumnos con “Asistencia Actual”  < 70%  de un curso'),
         '5': ('Salir', salir)
     }
 
@@ -75,14 +75,17 @@ def consulta_asistencia_rut():
 
 
 def visualiza_asistencia_70():
+    curso_ingreso = input("Ingrese el el curso a ingresar ")
     lista_alumnos = obtener_fichero_asistencia()
+    contador_alumnos=0
     for alumnos in lista_alumnos:
-        if alumnos['Asistencia_actual'] < 70:
-           print(f"{alumnos['curso']} alumno {alumnos['nombre']} Asistencia {alumnos['Asistencia_actual']}")
+        if alumnos['Asistencia_actual'] < 70 and curso_ingreso== alumnos ['curso']:
+           contador_alumnos +=1
+    print(f"{curso_ingreso} alumnos con asistencia <70% son {contador_alumnos} alumnos")
     input()
 
 
-def accion3():
+def visualiza_asistencia_curso():
     print('Has elegido la opción 3')
 
 
